@@ -17,13 +17,16 @@ public class Box {
 		this.points = points;
 	}
 
-	ArrayList<Box> generate() {
+	// Credit to Daniel Shiffman for the base implementation of this method
+	public List<Box> generate() {
 		ArrayList<Box> boxes = new ArrayList<>(8);
 		for (int x = -1; x < 2; x++) {
 			for (int y = -1; y < 2; y++) {
 				for (int z = -1; z < 2; z++) {
 					int sum = Math.abs(x) + Math.abs(y) + Math.abs(z);
 					double newSize = size / 3;
+					// When the absolute value of the sums is above 1 it is
+					// not a center box
 					if (sum > 1) {
 						Box b = new Box(pos.x() + x * newSize, pos.y() + y * newSize, pos.z() + z * newSize, newSize);
 						boxes.add(b);
@@ -31,6 +34,7 @@ public class Box {
 				}
 			}
 		}
+
 		return boxes;
 	}
 
@@ -40,7 +44,7 @@ public class Box {
 			// Add random point in the range of the box to the list
 			randomPoints.add(getRandomPoint());
 		}
-		
+
 		return new Box(pos.x(), pos.y(), pos.z(), size, randomPoints);
 	}
 
@@ -49,6 +53,7 @@ public class Box {
 		double halfSize = size / 2.0;
 		double[] max = { pos.x() + halfSize, pos.y() + halfSize, pos.z() + halfSize };
 		double[] min = { pos.x() - halfSize, pos.y() - halfSize, pos.z() - halfSize };
+		
 		// Use Math.random() to get a random point within the range of the box
 		double randomX = Math.random() * (max[0] - min[0]) + min[0];
 		double randomY = Math.random() * (max[1] - min[1]) + min[1];
