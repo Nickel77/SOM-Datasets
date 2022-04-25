@@ -23,14 +23,14 @@ public class MengerSponge {
         sponge.add(b);
 
         for (int iteration = 1; iteration <= n; iteration++) {
-            ArrayList<Box> next = new ArrayList<>();
+            ArrayList<Box> nextBoxes = new ArrayList<>();
             // Loop through each existing box and generate the new boxes
             // from it
             sponge.forEach(box -> {
-                ArrayList<Box> newBoxes = box.generate();
-                next.addAll(newBoxes);
+                List<Box> newBoxes = box.generate();
+                nextBoxes.addAll(newBoxes);
             });
-            sponge = next;
+            sponge = nextBoxes;
         }
 
         // Randomize the points in each box and record the amount of points stored
@@ -45,6 +45,7 @@ public class MengerSponge {
         // Print output to text files
         printToFile(sponge);
 
+        // Print the time it took to generate the sponge to the
         System.out.printf("Time taken: %.3f seconds%n", 
             (System.nanoTime() - startTime) / 1e9);
     }
@@ -54,13 +55,8 @@ public class MengerSponge {
             PrintStream xwriter = new PrintStream("spongex.txt");
             PrintStream ywriter = new PrintStream("spongey.txt");
             PrintStream zwriter = new PrintStream("spongez.txt");
-            /*sponge.forEach(box -> {
-                box.getPoints().forEach(point -> {
-                    xwriter.println(point.x());
-                    ywriter.println(point.y());
-                    zwriter.println(point.z());
-                });
-            }); */
+
+            // Get each point from each box and print it to the text files
             for (Box box : sponge) {
                 for (Point p : box.getPoints()) {
                     xwriter.println(p.x());
