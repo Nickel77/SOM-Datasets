@@ -40,14 +40,7 @@ public class Box {
 			// Add random point in the range of the box to the list
 			randomPoints.add(getRandomPoint());
 		}
-
-		/*ArrayList<Point> uniquePoints = new ArrayList<>(numOfPoints);
-		for (int index = 0; index < randomPoints.size(); index++) {
-			if (!uniquePoints.contains(randomPoints.get(index))) {
-				uniquePoints.add(randomPoints.get(index));
-			}
-		} */
-
+		
 		return new Box(pos.x(), pos.y(), pos.z(), size, randomPoints);
 	}
 
