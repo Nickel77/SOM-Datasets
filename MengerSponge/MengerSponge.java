@@ -45,7 +45,7 @@ public class MengerSponge {
         // Print output to text files
         printToFile(sponge);
 
-        // Print the time it took to generate the sponge to the
+        // Print the time it took to generate the sponge to the console
         System.out.printf("Time taken: %.3f seconds%n", 
             (System.nanoTime() - startTime) / 1e9);
     }
